@@ -1,0 +1,60 @@
+.column-container{
+  display: flex;
+  flex-direction: column;
+}
+div.card-margin div.circle{
+  display: flex;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  background-color: #2979FF;
+  border-radius: 100%;
+  margin: 10px;
+}
+
+.card-margin{
+  margin: 10px;
+}
+div.card-margin div{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.main-width{
+  width: 80%
+}
+div.card-margin div.flex-row{
+  display: flex;
+  justify-content: center;
+}
+.flex-center{
+  align-items: center;
+}
+.flex-flexible{
+  flex-basis: 30%;
+}
+
+.text-white{
+  color: white;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.title-desc{
+  flex: 0 1 70%;
+}
+
+div.card-margin div {
+  display: flex;
+  justify-content: space-between;
+}
+
+p{
+  padding: 15px;
+}
+.exercise-card{
+  background-color: red;
+}

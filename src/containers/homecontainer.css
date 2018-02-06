@@ -1,6 +1,7 @@
 .main-container2{
   display: flex;
-  justify-content: center;  
+  justify-content: center; 
+  min-height: 54vh; 
 }
 
 a{

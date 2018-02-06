@@ -1,0 +1,31 @@
+.message{
+  display: flex;
+  justify-content: space-around;
+  font-family: "Raleway";
+  font-size: 25px;
+  width: 100%;
+  text-align: center;
+  align-items: baseline;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 20px 0;
+  color:black;
+}
+
+.footer{
+  background-color: rgba(41, 121, 255, 1);
+  display: flex;
+  flex-wrap: wrap;  
+  align-items: center;
+  color:white;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.fa{
+  color: white;
+  font-size: 50px;
+  padding: 5px 0 5px 15px;
+
+}
+
+

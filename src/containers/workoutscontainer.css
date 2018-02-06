@@ -4,6 +4,7 @@
 
 .main-container{
   width:100%;
+  min-height: 39vh;
 }
 
 .profile-img{

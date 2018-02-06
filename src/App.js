@@ -10,6 +10,7 @@ import WorkoutsContainer from './containers/WorkoutsContainer'
 import WorkoutContainer from './containers/WorkoutContainer'
 import EditWorkoutContainer from './containers/EditWorkoutContainer'
 import NewWorkoutContainer from './containers/NewWorkoutContainer'
+import { Footer } from './components/Footer'
 
 
 class App extends Component {
@@ -52,15 +53,16 @@ class App extends Component {
         <Switch>
         { !this.state.loggedIn 
         ?
-        <Route exact path='/' component={LandingContainer} />
+        <LandingContainer/>
         :
         <div> 
-        <Nav handleLogout={this.handleLogout.bind(this)}/>
+        <Nav handleLogout={this.handleLogout.bind(this)} />
         <Route exact path='/' component={HomeContainer} />
         <Route exact path='/workouts' component={WorkoutsContainer}/>
         <Route exact path='/workouts/new' render={()=> <NewWorkoutContainer user={this.state.user} />} />
         <Route exact path='/workout/:workout' render={(props)=> <WorkoutContainer user={this.state.user}  {...props}/>} />
         <Route exact path='/workout/edit/:workout' render={(props)=> <EditWorkoutContainer user={this.state.user} {...props}/>} />
+        <Footer />
         </div>
         }
         </Switch>

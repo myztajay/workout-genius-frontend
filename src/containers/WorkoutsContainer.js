@@ -93,7 +93,7 @@ class WorkoutsContainer extends Component{
         <WorkoutFilter name="Calisthetics" abrev="CS" type={4} active={this.state.filterArr[0]} onFilterToggle={this.onFilterToggle.bind(this)} />
         <WorkoutFilter name="Cardio" abrev="CO" type={5} active={this.state.filterArr[0]} onFilterToggle={this.onFilterToggle.bind(this)} />
       </div>
-        <div className="filter-results">{this.state.workoutCount} {this.state.workoutCount < 2? 'Workout found' : 'workouts found'}</div>
+        <div className="filter-results">{this.state.workoutCount} {this.state.workoutCount === 1? 'Workout found' : 'workouts found'}</div>
         <div className="main-container">
           {this.renderWorkouts()}
         </div>

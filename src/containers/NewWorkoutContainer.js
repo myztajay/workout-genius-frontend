@@ -100,7 +100,7 @@ class NewWorkoutContainer extends Component{
   };
   
   handleSubmit(){
-    axios.post('/api/workouts', {
+    axios.post('https://radiant-headland-78469.herokuapp.com/api/workouts/', {
       name: this.state.name,
       exercises: this.state.exercises,
       description: this.state.description,

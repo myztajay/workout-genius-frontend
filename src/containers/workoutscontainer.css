@@ -13,6 +13,11 @@
   align-items: end;
 }
 
+.filter-title{
+  display: flex;
+  align-items: center;
+}
+
 @media screen and (min-width: 992px){
   .card-workout{
     max-width: 300px;

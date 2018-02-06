@@ -56,13 +56,11 @@ class App extends Component {
         :
         <div> 
         <Nav handleLogout={this.handleLogout.bind(this)}/>
-        <div className='main-view'>
         <Route exact path='/' component={FeedContainer} />
         <Route exact path='/workouts' component={WorkoutsContainer}/>
         <Route exact path='/workouts/new' render={()=> <NewWorkoutContainer user={this.state.user} />} />
         <Route exact path='/workout/:workout' render={(props)=> <WorkoutContainer user={this.state.user}  {...props}/>} />
         <Route exact path='/workout/edit/:workout' render={(props)=> <EditWorkoutContainer user={this.state.user} {...props}/>} />
-        </div>
         </div>
         }
         </Switch>

@@ -87,6 +87,7 @@ class WorkoutsContainer extends Component{
     return(
       <MuiThemeProvider>
       <div className="filter-div">
+        <div className='filter-title'>Filter by:</div>
         <WorkoutFilter name="Crossfit" abrev="CF" type={1} active={this.state.filterArr[0]} onFilterToggle={this.onFilterToggle.bind(this)} />
         <WorkoutFilter name="Hybrid" abrev="H" type={2} active={this.state.filterArr[0]} onFilterToggle={this.onFilterToggle.bind(this)}  />
         <WorkoutFilter name="BodyBuilding" abrev="BB" type={3} active={this.state.filterArr[0]} onFilterToggle={this.onFilterToggle.bind(this)} />

@@ -21,32 +21,27 @@ class WorkoutsContainer extends Component{
     axios.get('/api/workouts')
     .then((res)=>{
       this.setState({
-        workouts: res.data
+        workouts: res.data,
+        workoutCount: res.data.length
       })
     })
   }
 
   onFilterToggle(type){
-    if(this.state.filterArr.length === 0){
+    if(this.state.filterArr.length === 0 || this.state.filterArr[0] !== type){
       this.setState({
-          filterArr: [type]
+          filterArr: [type],
+          workoutCount: this.state.workouts.filter((workout)=>{
+            return workout.workout_type === type
+          }).length
       })
-    }
-    let checkArr = this.state.filterArr.some((workoutType)=>{
-      return workoutType === type
-    })
-    if(checkArr){
-      let newArr = this.state.filterArr.filter((workoutType)=>{
-        return workoutType !== type
-      })
+    } 
+    else {
       this.setState({
-        filterArr: [ ...newArr]
+        filterArr: [],
+        workoutCount: this.state.workouts.length
       })
-    }else{
-      this.setState({
-        filterArr: [ type]
-      })
-    }
+    }    
   }
   
   renderWorkouts(){
@@ -97,8 +92,8 @@ class WorkoutsContainer extends Component{
         <WorkoutFilter name="BodyBuilding" abrev="BB" type={3} active={this.state.filterArr[0]} onFilterToggle={this.onFilterToggle.bind(this)} />
         <WorkoutFilter name="Calisthetics" abrev="CS" type={4} active={this.state.filterArr[0]} onFilterToggle={this.onFilterToggle.bind(this)} />
         <WorkoutFilter name="Cardio" abrev="CO" type={5} active={this.state.filterArr[0]} onFilterToggle={this.onFilterToggle.bind(this)} />
-        <div></div>
       </div>
+        <div className="filter-results">{this.state.workoutCount} {this.state.workoutCount < 2? 'Workout found' : 'workouts found'}</div>
         <div className="main-container">
           {this.renderWorkouts()}
         </div>

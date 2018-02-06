@@ -144,7 +144,7 @@ class EditWorkoutContainer extends Component{
         } else {
           this.setState({
             snackbarOpen: true,
-            snackbarMessage: "Workout was created. " ,
+            snackbarMessage: "Workout was edited. " ,
           })
           setTimeout(()=>{this.setState({ redirect: true})} , 1500);    
         }    

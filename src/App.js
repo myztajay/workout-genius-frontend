@@ -5,7 +5,7 @@ import axios from 'axios'
 import Nav from './containers/Nav'
 import LandingContainer from './containers/LandingContainer'
 import '../node_modules/grommet-css';
-import FeedContainer from './containers/FeedContainer'
+import HomeContainer from './containers/HomeContainer'
 import WorkoutsContainer from './containers/WorkoutsContainer'
 import WorkoutContainer from './containers/WorkoutContainer'
 import EditWorkoutContainer from './containers/EditWorkoutContainer'
@@ -56,7 +56,7 @@ class App extends Component {
         :
         <div> 
         <Nav handleLogout={this.handleLogout.bind(this)}/>
-        <Route exact path='/' component={FeedContainer} />
+        <Route exact path='/' component={HomeContainer} />
         <Route exact path='/workouts' component={WorkoutsContainer}/>
         <Route exact path='/workouts/new' render={()=> <NewWorkoutContainer user={this.state.user} />} />
         <Route exact path='/workout/:workout' render={(props)=> <WorkoutContainer user={this.state.user}  {...props}/>} />

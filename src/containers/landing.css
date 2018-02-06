@@ -52,3 +52,10 @@
     bottom: 0;
     background: #1fa2ff;
 }
+
+@media screen and (max-width: 768px){
+  .intro-card{
+    max-width: 90%;
+    align-self: center;
+  }
+}

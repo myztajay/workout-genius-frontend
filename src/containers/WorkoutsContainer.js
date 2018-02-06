@@ -12,7 +12,8 @@ class WorkoutsContainer extends Component{
     super(props)
     this.state = {
       workouts: [],
-      filterArr: []
+      filterArr: [],
+      workoutCount: null,
     }
   }
 
@@ -47,12 +48,14 @@ class WorkoutsContainer extends Component{
       })
     }
   }
-
+  
   renderWorkouts(){
     let filter
     let workoutsArr
+    // lets us know if we are filtering by category
     this.state.filterArr.length < 1? filter=false : filter=true;
     if(filter){
+      // filters only workouts that match the filter value in state
       workoutsArr = this.state.workouts.filter((workout)=>{
         return workout.workout_type === this.state.filterArr[0]
       })
@@ -64,7 +67,7 @@ class WorkoutsContainer extends Component{
       return(
         <Link key={workout._id} to={'/workout/' + workout._id} >
           <Card className='card-workout'>
-            <CardTitle titleColor="#2979FF"  />
+            <CardTitle titleColor="#2979FF" />
             <CardMedia
               overlay={<CardTitle title={workout.name} subtitle="" />}
             >
@@ -86,6 +89,7 @@ class WorkoutsContainer extends Component{
   render(){
     return(
       <MuiThemeProvider>
+      <div className="banner"><div className="inner"><h1 className='banner-text'>Stay in Shape</h1> <h3 className="banner-text">with hundreds of workouts.</h3></div>  </div>
       <div className="filter-div">
         <div className='filter-title'>Filter by:</div>
         <WorkoutFilter name="Crossfit" abrev="CF" type={1} active={this.state.filterArr[0]} onFilterToggle={this.onFilterToggle.bind(this)} />
@@ -93,6 +97,7 @@ class WorkoutsContainer extends Component{
         <WorkoutFilter name="BodyBuilding" abrev="BB" type={3} active={this.state.filterArr[0]} onFilterToggle={this.onFilterToggle.bind(this)} />
         <WorkoutFilter name="Calisthetics" abrev="CS" type={4} active={this.state.filterArr[0]} onFilterToggle={this.onFilterToggle.bind(this)} />
         <WorkoutFilter name="Cardio" abrev="CO" type={5} active={this.state.filterArr[0]} onFilterToggle={this.onFilterToggle.bind(this)} />
+        <div></div>
       </div>
         <div className="main-container">
           {this.renderWorkouts()}

@@ -33,7 +33,7 @@ const renderSliderTips = (intensity)=>{
       return(
         <div style={mystyles.divGreen}>
         <h4 style={mystyles.myGreen} className='my-green' >This so easy</h4>
-        <p style={mystyles.myGreen}> a light workout that anyone can handle even your grandmother</p>
+        <p style={mystyles.myGreen}> a light workout that anyone can do even your grandmother.</p>
         </div>
       )
       
@@ -41,7 +41,7 @@ const renderSliderTips = (intensity)=>{
       return(
         <div style={mystyles.divYellow}>
         <h4 style={mystyles.myYellow}>The medium sauce</h4>
-        <p style={mystyles.myYellow} > Most people can accomplish this workout</p>
+        <p style={mystyles.myYellow} > Most people can accomplish this workout.</p>
         </div>
       )
     
@@ -49,7 +49,7 @@ const renderSliderTips = (intensity)=>{
       return(
         <div style={mystyles.divRed}>
         <h4 style={mystyles.myRed}>Some difficult stuff</h4>
-        <p style={mystyles.myRed}> This is trainig for sports or the brolympics </p>
+        <p style={mystyles.myRed}> This is traninig for sports or the brolympics </p>
         </div>
       )  
     default:        
@@ -59,7 +59,7 @@ const renderSliderTips = (intensity)=>{
 export const IntensitySlider = (props) =>{
   return(
     <div>
-    <Slider min={0.33} max={0.99}step={0.33} value={props.intensity} onChange={props.handleSliderChange} />
+    <Slider min={0.33} max={0.99}step={0.33} value={props.intensity/100} onChange={props.handleSliderChange} />
     {renderSliderTips(props.intensity)} 
     </div> 
   )

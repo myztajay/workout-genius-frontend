@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Card, CardTitle } from 'material-ui/Card';
-import './workoutcontainer.css'
 import axios from 'axios';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router-dom';
-import { DeleteDialog } from '../components/DeleteDialog'
+import { DeleteDialog } from '../components/DeleteDialog';
+import './workoutcontainer.css';
 
 class WorkoutContainer extends Component {
   
@@ -54,10 +54,9 @@ class WorkoutContainer extends Component {
     return this.state.exercises.map((exercise)=>{
       // THE JSX return should be refactored into own component when finalized
       return(
-        <Card className="card-margin exercise-card" >          
+        <Card className="card-margin exercise-card">          
             <div className="column-container flex-flexible">
-              <CardTitle title={exercise.name}/>
-              <CardTitle subtitle="subtitle"/>
+              <CardTitle title={exercise.name} titleColor="#2979FF"/>
             </div>
             <div className='flex-row flex-flexible flex-end'>
               <div className="circle flex-center text-white text-center">reps<br />{exercise.reps}</div>
@@ -101,16 +100,18 @@ class WorkoutContainer extends Component {
     }
     return(
       <MuiThemeProvider> 
-        <div className="main-container">
-            <Card className="column-container main-width">
-              <div className="flex-row flex-center">
+        <div className="main-container-workout">
+            <Card className="column-container main-width ">
+              <div className="flex-row flex-center main-blue">
                 <div className="column-container title-desc">
                   <CardTitle  title={this.state.name} subtitle={`${this.state.description}`} />
-                  <p>Likes - comments</p>
+                  Likes - comments
                   {this.renderAdminButtons()}
                   </div>      
                 </div>
-              {this.renderExercisesInWorkout()}        
+              <div>
+              {this.renderExercisesInWorkout()}   
+              </div>     
             </Card>
         </div>
       </MuiThemeProvider> 

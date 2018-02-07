@@ -1,3 +1,11 @@
+.main-container-workout{
+  min-height: 66vh;
+  margin-top: 30px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
 .column-container{
   display: flex;
   flex-direction: column;
@@ -11,7 +19,9 @@ div.card-margin div.circle{
   border-radius: 100%;
   margin: 10px;
 }
-
+.main-blue{
+  background-color: #dfe6e9 ;
+}
 .card-margin{
   margin: 10px;
 }

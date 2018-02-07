@@ -9,7 +9,8 @@ a{
 }
 
 div.main-container2 a{
-  flex: 0 1 25%
+  flex: 0 1 25%;
+  text-align: center;
 }
 
 .card-actions{

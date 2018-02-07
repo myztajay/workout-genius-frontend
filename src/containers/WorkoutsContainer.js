@@ -4,6 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Link } from 'react-router-dom';
 import Divider from 'material-ui/Divider';
 import { WorkoutFilter } from '../components/WorkoutFilter';
+import { IntensityRating } from '../components/IntensityRating';
 import axios from 'axios'
 import './workoutscontainer.css';
 
@@ -57,7 +58,18 @@ class WorkoutsContainer extends Component{
     } else {
       workoutsArr = this.state.workouts
     }
-    
+    if(workoutsArr < 1){
+        return(
+          <Link to='workouts/new'>
+            <Card className='card-action'>
+              <CardTitle titleColor="#2979FF" title="Create a workout" subtitle="Got a killer workout? Share it with the world." />
+              <div className="icon-container">
+                <i class="material-icons">add_circle</i>
+              </div>
+            </Card>
+          </Link>
+        )
+    }
     return workoutsArr.map((workout)=>{
       return(
         <Link key={workout._id} to={'/workout/' + workout._id} >
@@ -69,12 +81,12 @@ class WorkoutsContainer extends Component{
             <img className="workout-img" src="workout.jpeg" alt="" />
             </CardMedia>
             <div className="card-info">
-              <div className="info"><h4>Exercise</h4><br /><p className="card-text">{workout.exercises.length}</p></div>
-              <div className="info"><h4>Intensity</h4><br /><p className="card-text">{workout.intensity}</p></div>
-              <div className="info"><h4>likes</h4><br /><p className="card-text">20</p></div>
+              <div className="info"><h4>Exercises</h4><p className="card-text">{workout.exercises.length}</p></div>
+              <div className="info"><h4>Intensity</h4><p className="card-text"><IntensityRating intensity={workout.intensity} /></p></div>
+              <div className="info"><h4>likes</h4><p className="card-text">20</p></div>
             </div>
             <Divider />
-            <div className='user-info'><img className='profile-img' alt="A workout" src={`${workout.creator[0].facebook_photo}`} /><p>{workout.creator[0].display_name}</p></div>
+            <div className='user-info'><img className='profile-img' alt="A workout" src={`${workout.creator[0].facebook_photo}`} />{workout.creator[0].display_name}</div>
           </Card>
         </Link>
       )
@@ -84,7 +96,7 @@ class WorkoutsContainer extends Component{
   render(){
     return(
       <MuiThemeProvider>
-      <div className="banner"><div className="inner"><h1 className='banner-text'>Stay in Shape</h1> <h3 className="banner-text">with hundreds of workouts.</h3></div>  </div>
+      <div className="banner"><div className="inner"><h1 className='banner-text'>Stay in Shape</h1> <h3 className="banner-text">with hundreds of workouts.</h3></div></div>
       <div className="filter-div">
         <div className='filter-title'>Filter by:</div>
         <WorkoutFilter name="Crossfit" abrev="CF" type={1} active={this.state.filterArr[0]} onFilterToggle={this.onFilterToggle.bind(this)} />

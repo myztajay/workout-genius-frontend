@@ -10,9 +10,6 @@ import FlatButton from 'material-ui/FlatButton'
 
 const MyNavLinks = () => (
   <ToolbarGroup>
-    <FlatButton label="Workouts" labelStyle={{color: 'white'}} containerElement={<NavLink to="/workouts"/>}/>
-    <FlatButton label="Settings" labelStyle={{color: 'white'}} containerElement={<NavLink to="/settings" />}/>
-    <FlatButton label="myworkouts" labelStyle={{color: 'white'}} containerElement={<NavLink to="/myworkouts" />}/>
     <FlatButton label="Create" labelStyle={{color: 'white', backgroundColor:'#2979FF', padding: '10px'}} containerElement={<NavLink to="/workouts/new" />}/>
   </ToolbarGroup> 
 );

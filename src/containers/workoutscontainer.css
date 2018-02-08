@@ -53,6 +53,14 @@
   color: #2979FF;
   margin:5px;
 }
+
+.tb-padding{
+  padding: 20px;
+}
+
+.no-paddding{
+  padding: 0;
+}
 a{
   margin: 13px;
 }

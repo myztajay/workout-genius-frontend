@@ -103,8 +103,8 @@ class WorkoutContainer extends Component {
         <div className="main-container-workout">
             <Card className="column-container main-width ">
               <div className="flex-row flex-center main-blue">
-                <div className="column-container title-desc">
-                  <CardTitle  title={this.state.name} subtitle={`${this.state.description}`} />
+                <div className="column-container title-desc tb-padding">
+                  <CardTitle  className="no-padding" title={this.state.name} subtitle={`${this.state.description}`} />
                   Likes - comments
                   {this.renderAdminButtons()}
                   </div>      

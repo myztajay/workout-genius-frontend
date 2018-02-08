@@ -29,7 +29,8 @@ class NewWorkoutContainer extends Component{
       workoutType: 0,
       creator: props.user,
       snackbarOpen: false,
-      snackbarMessage: "bro..."
+      snackbarMessage: "bro...",
+      submited: false,
     }
   }
   
@@ -100,6 +101,10 @@ class NewWorkoutContainer extends Component{
   };
   
   handleSubmit(){
+    if(this.state.submited){
+      return
+    }
+    this.setState({ submited: true })
     axios.post('https://radiant-headland-78469.herokuapp.com/api/workouts/', {
       name: this.state.name,
       exercises: this.state.exercises,
@@ -113,7 +118,8 @@ class NewWorkoutContainer extends Component{
       if(res.data.hasOwnProperty('errors')){
         this.setState({
           snackbarOpen: true,
-          snackbarMessage: "Something went wrong, double check required fields" 
+          snackbarMessage: "Something went wrong, double check required fields", 
+          submited: false
         })
       } else {
         this.setState({

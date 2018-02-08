@@ -20,18 +20,23 @@ class EditWorkoutContainer extends Component{
     this.state ={
       workoutId: props.match.params.workout,
       exercises: [],
-      exerciseInput: '',
-      repsInput: '',
-      setsInput: '',
+      exerciseInput: null,
+      repsInput: null,
+      setsInput: null,
       exerciseSelected: false,
-      name: '',
-      description: '',
+      name: null,
+      description: null,
       intensity: 33,
-      workoutType: 0,
+      workoutType: null,
       user: props.user,
-      creator: '',
+      creator: null,
       snackbarOpen: false,
       snackbarMessage: "bro...",
+      submited: false,
+      nameError: null,
+      descriptionError: null,
+      exerciseError: null,
+      workoutTypeError: null
     }
   }
   
@@ -58,16 +63,11 @@ class EditWorkoutContainer extends Component{
       reps: this.state.repsInput
     }
     this.setState({
+      exerciseError: '',
       exercises: [...this.state.exercises, newExercise],
       exerciseInput: '',
       setsInput: '',
       repsInput: '',
-    })
-  }
-  
-  handleDialogClose(){
-    this.setState({
-      deleteDialogOpen: false,
     })
   }
     
@@ -91,12 +91,14 @@ class EditWorkoutContainer extends Component{
   
   handleTitleChange(e){
     this.setState({
+      nameError: '',
       name: e.target.value
     })
   }
   
   handleDescriptionChange(e){
     this.setState({
+      descriptionError: '',
       description: e.target.value
     })
   }
@@ -108,7 +110,10 @@ class EditWorkoutContainer extends Component{
   }
   
   handleSelectChange(event, index, workoutType){
-    this.setState({workoutType});
+    this.setState({
+      workoutTypeError: '',
+      workoutType
+    });
   }
   
   handleSnackbarClick = () => {
@@ -123,6 +128,13 @@ class EditWorkoutContainer extends Component{
     });
   };
   
+  handleDialogClose(){
+   this.setState({
+      deleteDialogOpen: false,
+    })
+  }
+
+  
   handleSubmit(){
     if(this.state.user._id === this.state.creator[0]){
       axios.put(`/api/workouts/${this.state.workoutId}`, {
@@ -136,7 +148,22 @@ class EditWorkoutContainer extends Component{
       .then((res)=>{
         console.log(res);
         // check res for error, future fix server will respond with 400 so catch can work
+        
         if(res.data.hasOwnProperty('errors')){
+          // Assign all validation errors to variable and if they exist place them in state to display to user.
+          let validationErrors = {...res.data.errors}
+          if(validationErrors.hasOwnProperty('name')){
+            this.setState({nameError: validationErrors.name.message})
+          }
+          if(validationErrors.hasOwnProperty('description')){
+            this.setState({descriptionError: validationErrors.description.message})
+          }
+          if(validationErrors.hasOwnProperty('workout_type')){
+            this.setState({workoutTypeError: validationErrors.workout_type.message})
+          }
+          if(validationErrors.hasOwnProperty('exercises')){
+            this.setState({exerciseError: validationErrors.exercises.message})
+          }
           this.setState({
             snackbarOpen: true,
             snackbarMessage: "Something went wrong, double check required fields" 
@@ -144,7 +171,7 @@ class EditWorkoutContainer extends Component{
         } else {
           this.setState({
             snackbarOpen: true,
-            snackbarMessage: "Workout was edited. " ,
+            snackbarMessage: "Workout was Edited. " ,
           })
           setTimeout(()=>{this.setState({ redirect: true})} , 1500);    
         }    
@@ -159,8 +186,6 @@ class EditWorkoutContainer extends Component{
   }
       
   render(){
-
-   
     const { redirect } = this.state;
 
     if (redirect) {
@@ -181,22 +206,25 @@ class EditWorkoutContainer extends Component{
           <TextField
             hintText="Spartan Abs"
             floatingLabelText="Workout Name"
+            value={this.state.name}
+            errorText={this.state.nameError}
             fullWidth={true}
             onChange={this.handleTitleChange.bind(this)}
-            value={this.state.name}
           />
           <br />
           <TextField
-            hintText="Make it short and sweat"
+            hintText="Make it short and sweet"
             floatingLabelText="Subtitle"
+            value={this.state.description}
+            errorText={this.state.descriptionError}
             fullWidth={true}
             onChange={this.handleDescriptionChange.bind(this)}
-            value={this.state.description}
           />
           <br />
           <TextField
             hintText="Crunches"
             floatingLabelText="Exercises"
+            errorText={this.state.exerciseError}
             style={{width:350, margin:5}}
             value={this.state.exerciseInput}
             onChange={this.handleExerciseInputChange.bind(this)}
@@ -218,8 +246,8 @@ class EditWorkoutContainer extends Component{
           <ContentAdd onClick={this.addExercise.bind(this)}/>
           </FloatingActionButton>
           <h4>Intensity</h4>      
-          <IntensitySlider intensity={this.state.intensity}  handleSliderChange={this.handleSliderChange.bind(this)}  />
-          <WorkoutSelectField workoutType={this.state.workoutType} handleSelectChange={this.handleSelectChange.bind(this)} />
+          <IntensitySlider intensity={this.state.intensity} handleSliderChange={this.handleSliderChange.bind(this)}  />
+          <WorkoutSelectField value={this.state.workoutType} errorText={this.state.workoutTypeError} handleSelectChange={this.handleSelectChange.bind(this)} />
         </form> 
         </Card>
         </div>

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Divider from 'material-ui/Divider';
 import { WorkoutFilter } from '../components/WorkoutFilter';
 import { IntensityRating } from '../components/IntensityRating';
+import { Heart } from '../components/Heart';
 import axios from 'axios'
 import './workoutscontainer.css';
 
@@ -15,6 +16,7 @@ class WorkoutsContainer extends Component{
       workouts: [],
       filterArr: [],
       workoutCount: null,
+      hover: false,
     }
   }
 
@@ -25,6 +27,17 @@ class WorkoutsContainer extends Component{
         workouts: res.data,
         workoutCount: res.data.length
       })
+    })
+  }
+  
+  onHover(){
+    this.setState({
+      hover: true
+    })
+  }
+  offHover(){
+    this.setState({
+      hover: false
     })
   }
 
@@ -44,6 +57,8 @@ class WorkoutsContainer extends Component{
       })
     }    
   }
+  
+  
   
   renderWorkouts(){
     let filter
@@ -72,13 +87,22 @@ class WorkoutsContainer extends Component{
     }
     return workoutsArr.map((workout)=>{
       return(
-        <Link key={workout._id} to={'/workout/' + workout._id} >
+        <Link 
+          key={workout._id} 
+          to={'/workout/' + workout._id} 
+          onMouseEnter={this.onHover.bind(this)}
+          onMouseLeave={this.offHover.bind(this)}
+        >
           <Card className='card-workout'>
+
             <CardTitle titleColor="#2979FF" />
+            <Heart hover={this.state.hover} />
             <CardMedia
-              overlay={<CardTitle title={workout.name} subtitle="" />}
+              overlay={<CardTitle title={workout.name} subtitle={workout.description} /> }    
             >
+            
             <img className="workout-img" src="workout.jpeg" alt="" />
+            
             </CardMedia>
             <div className="card-info">
               <div className="info"><h4>Exercises</h4><p className="card-text">{workout.exercises.length}</p></div>

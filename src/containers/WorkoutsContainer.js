@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import Divider from 'material-ui/Divider';
 import { WorkoutFilter } from '../components/WorkoutFilter';
 import { IntensityRating } from '../components/IntensityRating';
-import { Heart } from '../components/Heart';
 import axios from 'axios'
 import './workoutscontainer.css';
 
@@ -16,7 +15,7 @@ class WorkoutsContainer extends Component{
       workouts: [],
       filterArr: [],
       workoutCount: null,
-      hover: false,
+      user: props.user
     }
   }
 
@@ -27,17 +26,6 @@ class WorkoutsContainer extends Component{
         workouts: res.data,
         workoutCount: res.data.length
       })
-    })
-  }
-  
-  onHover(){
-    this.setState({
-      hover: true
-    })
-  }
-  offHover(){
-    this.setState({
-      hover: false
     })
   }
 
@@ -58,6 +46,17 @@ class WorkoutsContainer extends Component{
     }    
   }
   
+  OnLikeClick(workout){
+    let likeCheck = workout.liked.some((userThatLiked)=>{ 
+      if(String(this.state.user._id) === String(userThatLiked)) return true
+    })
+    if(!likeCheck){ 
+      workout.liked = [...workout.liked, this.state.user]
+      axios.put(`/api/workouts/${workout._id}`, 
+        workout
+      )
+    }
+  }
   
   
   renderWorkouts(){
@@ -86,33 +85,26 @@ class WorkoutsContainer extends Component{
         )
     }
     return workoutsArr.map((workout)=>{
-      return(
-        <Link 
-          key={workout._id} 
-          to={'/workout/' + workout._id} 
-          onMouseEnter={this.onHover.bind(this)}
-          onMouseLeave={this.offHover.bind(this)}
-        >
-          <Card className='card-workout'>
-
-            <CardTitle titleColor="#2979FF" />
-            <Heart hover={this.state.hover} />
-            <CardMedia
-              overlay={<CardTitle title={workout.name} subtitle={workout.description} /> }    
-            >
-            
-            <img className="workout-img" src="workout.jpeg" alt="" />
-            
+      return(    
+        <Card className='card-workout'>
+          <CardTitle titleColor="#2979FF" />
+          <Link  key={workout._id} to={'/workout/' + workout._id} >
+            <CardMedia overlay={<CardTitle title={workout.name} subtitle={workout.description} /> } >  
+              <img className="workout-img" src="workout.jpeg" alt="" />
             </CardMedia>
-            <div className="card-info">
-              <div className="info"><h4>Exercises</h4><p className="card-text">{workout.exercises.length}</p></div>
-              <div className="info"><h4>Intensity</h4><p className="card-text"><IntensityRating intensity={workout.intensity} /></p></div>
-              <div className="info"><h4>likes</h4><p className="card-text">20</p></div>
-            </div>
-            <Divider />
-            <div className='user-info'><img className='profile-img' alt="A workout" src={`${workout.creator[0].facebook_photo}`} />{workout.creator[0].display_name}</div>
-          </Card>
-        </Link>
+          </Link>
+          <div className="card-info">
+            <div className="info"><h4>Exercises</h4><p className="card-text">{workout.exercises.length}</p></div>
+            <div className="info"><h4>Intensity</h4><p className="card-text"><IntensityRating intensity={workout.intensity} /></p></div>
+            <div className="info"><h4>likes</h4><p className="card-text">{workout.liked.length}</p></div>
+            <div className="info like" onClick={this.OnLikeClick.bind(this, workout)}>
+              <h4><i class="material-icons material-iconz">favorite_border</i></h4>
+            </div>  
+          </div>
+          <Divider />
+          <div className='user-info'><img className='profile-img' alt="A workout" src={`${workout.creator[0].facebook_photo}`} />{workout.creator[0].display_name}</div>
+        </Card>
+      
       )
     })
   }

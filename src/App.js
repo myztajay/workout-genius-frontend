@@ -58,7 +58,7 @@ class App extends Component {
         <div> 
         <Nav handleLogout={this.handleLogout.bind(this)} />
         <Route exact path='/' component={HomeContainer} />
-        <Route exact path='/workouts' component={WorkoutsContainer}/>
+        <Route exact path='/workouts' render={()=> <WorkoutsContainer user={this.state.user} /> }/>
         <Route exact path='/workouts/new' render={()=> <NewWorkoutContainer user={this.state.user} />} />
         <Route exact path='/workout/:workout' render={(props)=> <WorkoutContainer user={this.state.user}  {...props}/>} />
         <Route exact path='/workout/edit/:workout' render={(props)=> <EditWorkoutContainer user={this.state.user} {...props}/>} />

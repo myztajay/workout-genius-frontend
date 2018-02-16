@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 
+
 .main-container{
   width:100%;
   min-height: 53vh;
@@ -36,6 +37,10 @@
   font-family: 'Open Sans';
   font-size: 30px;
   color: gray;
+}
+
+.like{
+  align-self: center;
 }
 
 .banner{

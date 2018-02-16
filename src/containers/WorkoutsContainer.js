@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 import Divider from 'material-ui/Divider';
 import { WorkoutFilter } from '../components/WorkoutFilter';
 import { IntensityRating } from '../components/IntensityRating';
-import axios from 'axios'
+import RaisedButton from 'material-ui/RaisedButton';
+import axios from 'axios';
 import './workoutscontainer.css';
 
 class WorkoutsContainer extends Component{
@@ -37,28 +38,28 @@ class WorkoutsContainer extends Component{
             return workout.workout_type === type
           }).length
       })
-    } 
+    }
     else {
       this.setState({
         filterArr: [],
         workoutCount: this.state.workouts.length
       })
-    }    
+    }
   }
-  
+
   OnLikeClick(workout){
-    let likeCheck = workout.liked.some((userThatLiked)=>{ 
+    let likeCheck = workout.liked.some((userThatLiked)=>{
       if(String(this.state.user._id) === String(userThatLiked)) return true
     })
-    if(!likeCheck){ 
+    if(!likeCheck){
       workout.liked = [...workout.liked, this.state.user]
-      axios.put(`/api/workouts/${workout._id}`, 
+      axios.put(`/api/workouts/${workout._id}`,
         workout
       )
     }
   }
-  
-  
+
+
   renderWorkouts(){
     let filter
     let workoutsArr
@@ -85,26 +86,29 @@ class WorkoutsContainer extends Component{
         )
     }
     return workoutsArr.map((workout)=>{
-      return(    
+      return(
         <Card className='card-workout'>
           <CardTitle titleColor="#2979FF" />
           <Link  key={workout._id} to={'/workout/' + workout._id} >
-            <CardMedia overlay={<CardTitle title={workout.name} subtitle={workout.description} /> } >  
+            <CardMedia overlay={<CardTitle title={workout.name} subtitle={workout.description} /> } >
               <img className="workout-img" src="workout.jpeg" alt="" />
             </CardMedia>
           </Link>
           <div className="card-info">
             <div className="info"><h4>Exercises</h4><p className="card-text">{workout.exercises.length}</p></div>
             <div className="info"><h4>Intensity</h4><p className="card-text"><IntensityRating intensity={workout.intensity} /></p></div>
-            <div className="info"><h4>likes</h4><p className="card-text">{workout.liked.length}</p></div>
-            <div className="info like" onClick={this.OnLikeClick.bind(this, workout)}>
-              <h4><i class="material-icons material-iconz">favorite_border</i></h4>
-            </div>  
+            <div className="info"><h4>Likes</h4><p className="card-text">{workout.liked.length}</p></div>
+            <div className="info" onClick={this.OnLikeClick.bind(this, workout)}>
+              <h4>Like</h4>
+              <p className="card-text">
+                <h4><i class="material-icons material-iconz">favorite_border</i></h4>
+              </p>
+            </div>
           </div>
           <Divider />
           <div className='user-info'><img className='profile-img' alt="A workout" src={`${workout.creator[0].facebook_photo}`} />{workout.creator[0].display_name}</div>
         </Card>
-      
+
       )
     })
   }

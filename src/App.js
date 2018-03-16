@@ -57,7 +57,7 @@ class App extends Component {
         <LandingContainer/>
         :
         <div>
-        <Nav handleLogout={this.handleLogout.bind(this)}/>
+        <Nav handleLogout={this.handleLogout.bind(this)} user={this.state.user}/>
         <Route exact path='/' render={()=> <HomeContainer user={this.state.user}/>}/>
         <Route exact path='/workouts' render={()=> <WorkoutsContainer user={this.state.user}/>}/>
         <Route exact path='/workouts/new' render={()=> <NewWorkoutContainer user={this.state.user}/>}/>

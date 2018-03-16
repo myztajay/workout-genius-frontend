@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.css'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import axios from 'axios'
 import Nav from './containers/Nav'
 import LandingContainer from './containers/LandingContainer'
-import '../node_modules/grommet-css';
+import '../node_modules/grommet-css'
 import HomeContainer from './containers/HomeContainer'
 import WorkoutsContainer from './containers/WorkoutsContainer'
 import WorkoutContainer from './containers/WorkoutContainer'
 import EditWorkoutContainer from './containers/EditWorkoutContainer'
 import NewWorkoutContainer from './containers/NewWorkoutContainer'
+import ProfileContainer from './containers/ProfileContainer'
 import { Footer } from './components/Footer'
 
 
@@ -21,23 +22,23 @@ class App extends Component {
       user: {},
     }
   }
-  
+
   componentDidMount(){
     axios.get('/api/auth/userauth')
     .then((res)=>{
       if(res.data !== ''){
-        this.setState({user: res.data, loggedIn: true})    
+        this.setState({user: res.data, loggedIn: true})
       }
-    })  
+    })
     .catch((err)=>{console.log(err);})
-    
+
     axios.get('/api/workouts')
     .then((res)=>{
-      this.setState({workout: res.data})    
+      this.setState({workout: res.data})
     })
     .catch((err)=>{console.log(err);})
   }
-  
+
   handleLogout(){
     console.log("it happened");
     axios.get('/api/auth/logout')
@@ -46,28 +47,29 @@ class App extends Component {
       user:{}
     })
   }
-  
+
   render() {
     return (
       <BrowserRouter>
         <Switch>
-        { !this.state.loggedIn 
+        { !this.state.loggedIn
         ?
         <LandingContainer/>
         :
-        <div> 
-        <Nav handleLogout={this.handleLogout.bind(this)} />
-        <Route exact path='/' component={HomeContainer} />
-        <Route exact path='/workouts' render={()=> <WorkoutsContainer user={this.state.user} /> }/>
-        <Route exact path='/workouts/new' render={()=> <NewWorkoutContainer user={this.state.user} />} />
+        <div>
+        <Nav handleLogout={this.handleLogout.bind(this)}/>
+        <Route exact path='/' render={()=> <HomeContainer user={this.state.user}/>}/>
+        <Route exact path='/workouts' render={()=> <WorkoutsContainer user={this.state.user}/>}/>
+        <Route exact path='/workouts/new' render={()=> <NewWorkoutContainer user={this.state.user}/>}/>
         <Route exact path='/workout/:workout' render={(props)=> <WorkoutContainer user={this.state.user}  {...props}/>} />
         <Route exact path='/workout/edit/:workout' render={(props)=> <EditWorkoutContainer user={this.state.user} {...props}/>} />
+        <Route exact path='/profile/:user' render={()=> <ProfileContainer />} />
         <Footer />
         </div>
         }
         </Switch>
       </BrowserRouter>
-    
+
     );
   }
 }

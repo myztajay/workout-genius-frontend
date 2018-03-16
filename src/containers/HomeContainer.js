@@ -6,7 +6,10 @@ import { Link } from 'react-router-dom';
 
 
 class HomeContainer extends Component{
-  render(){
+  constructor(props){
+    super(props)
+  }
+  render(props){
     return(
       <MuiThemeProvider>
       <div className="banner2">
@@ -31,7 +34,7 @@ class HomeContainer extends Component{
           </div>
         </Card>
         </Link>
-        <Link to='/settings'>
+        <Link to= {`/profile/${this.props.user._id}`}>
         <Card className='card-actions'>
           <CardTitle titleColor="#2979FF" title="Profile" subtitle="Change your profile and show everyone the new you" />
           <div className="icon-container">

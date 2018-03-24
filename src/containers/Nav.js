@@ -1,16 +1,20 @@
-import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
-import AppBar from 'material-ui/AppBar';
+import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom'
+import AppBar from 'material-ui/AppBar'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
-import { ToolbarGroup } from 'material-ui/Toolbar';
+import Drawer from 'material-ui/Drawer'
+import MenuItem from 'material-ui/MenuItem'
+import { ToolbarGroup } from 'material-ui/Toolbar'
 import './nav.css'
 import FlatButton from 'material-ui/FlatButton'
 
 const MyNavLinks = () => (
   <ToolbarGroup>
-    <FlatButton label="Create" labelStyle={{color: 'white', backgroundColor:'#2979FF', padding: '10px'}} containerElement={<NavLink to="/workouts/new" />}/>
+    <FlatButton 
+      label="Create"
+      labelStyle={{color: 'white', backgroundColor:'#2979FF', padding: '10px'}} 
+      containerElement={<NavLink to="/workouts/new" />}
+    />
   </ToolbarGroup>
 );
 

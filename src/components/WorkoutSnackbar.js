@@ -1,15 +1,15 @@
-import React from 'react';
-import Snackbar from 'material-ui/Snackbar';
+import React from 'react'
+import Snackbar from 'material-ui/Snackbar'
 
-export const WorkoutSnackbar = (props) =>{
-    return (
-      <div>
-        <Snackbar
-          open={props.snackbarOpen}
-          message={props.snackbarMessage}
-          autoHideDuration={4000}
-          onRequestClose={props.handleSnackbarRequestClose}
-        />
-      </div>
-    );
-}
+const WorkoutSnackbar = ({ snackbarOpen, snackbarMessage, handleSnackbarRequestClose}) => (
+  <div>
+    <Snackbar
+      open={snackbarOpen}
+      message={snackbarMessage}
+      autoHideDuration={4000}
+      onRequestClose={handleSnackbarRequestClose}
+    />
+  </div>
+)
+
+export default WorkoutSnackbar

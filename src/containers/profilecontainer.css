@@ -1,0 +1,51 @@
+.profile-container{
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+.photo-container{
+  display: flex;
+  flex: 0 1 25%;
+}
+
+.quote-container{
+  flex: 0 1 50%
+}
+.container{
+  display: flex;
+  flex: 1 1 75%
+}
+
+.card-container{
+  display: flex;
+  justify-content: space-around;
+}
+.rounded{
+  border-radius: 100%;
+}
+
+.banner2{
+  background: linear-gradient(to right, rgba(255, 255, 255,1), rgba(223, 255, 255,0.8), rgba(223, 255, 255,0.8)),url(/workoutbanner2.jpeg) no-repeat center center;
+  background-size: cover;
+  height: 40vh;
+  text-align: center;
+  display: flex;
+  padding: 0 30px
+
+}
+
+.card-width{
+  width: 100%;
+}
+.top-Margin{
+  margin-top: 15px
+}
+.like-workouts-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.workouts-created-container{
+  display: flex;
+  flex-direction: column;
+}

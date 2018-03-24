@@ -1,66 +1,65 @@
-import React from 'react';
-import Slider from 'material-ui/Slider';
+import React from 'react'
+import Slider from 'material-ui/Slider'
 import './intensityslider.css'
 
-const renderSliderTips = (intensity)=>{
-
-  var mystyles ={
+const renderSliderTips = (intensity) => {
+  const mystyles = {
     myGreen: {
-      color:'#27ae60'
-    },    
-    myRed:{
-      color:'#e74c3c' 
-    },  
-    myYellow:{
-      color:'#e67e22'
+      color: '#27ae60',
     },
-    divGreen:{
+    myRed: {
+      color: '#e74c3c',
+    },
+    myYellow: {
+      color: '#e67e22',
+    },
+    divGreen: {
       backgroundColor: '#EAF7E7',
-      padding: 10
+      padding: 10,
     },
-    divYellow:{
+    divYellow: {
       backgroundColor: '#feffe5',
-      padding: 10
+      padding: 10,
     },
-    divRed:{
+    divRed: {
       backgroundColor: '#ffe5e5',
-      padding: 10
-    }
-    
+      padding: 10,
+    },
+
   }
-  switch (intensity){
+  switch (intensity) {
     case 33:
-      return(
+      return (
         <div style={mystyles.divGreen}>
-        <h4 style={mystyles.myGreen} className='my-green' >This so easy</h4>
-        <p style={mystyles.myGreen}> a light workout that anyone can do even your grandmother.</p>
+          <h4 style={mystyles.myGreen} className="my-green" >This so easy</h4>
+          <p style={mystyles.myGreen}> a light workout that anyone can do even your grandmother.</p>
         </div>
       )
-      
+
     case 66:
-      return(
+      return (
         <div style={mystyles.divYellow}>
-        <h4 style={mystyles.myYellow}>The medium sauce</h4>
-        <p style={mystyles.myYellow} > Most people can accomplish this workout.</p>
+          <h4 style={mystyles.myYellow}>The medium sauce</h4>
+          <p style={mystyles.myYellow} > Most people can accomplish this workout.</p>
         </div>
       )
-    
+
     case 99:
-      return(
+      return (
         <div style={mystyles.divRed}>
-        <h4 style={mystyles.myRed}>Some difficult stuff</h4>
-        <p style={mystyles.myRed}> This is traninig for sports or the brolympics </p>
+          <h4 style={mystyles.myRed}>Some difficult stuff</h4>
+          <p style={mystyles.myRed}> This is traninig for sports or the brolympics </p>
         </div>
-      )  
-    default:        
+      )
+    default:
   }
 }
 
-export const IntensitySlider = (props) =>{
-  return(
-    <div>
-    <Slider min={0.33} max={0.99}step={0.33} value={props.intensity/100} onChange={props.handleSliderChange} />
-    {renderSliderTips(props.intensity)} 
-    </div> 
-  )
-}
+const IntensitySlider = ( {intensity, handleSliderChange} ) => (
+  <div>
+    <Slider min={0.33} max={0.99}step={0.33} value={intensity / 100} onChange={handleSliderChange} />
+    {renderSliderTips(intensity)}
+  </div>
+)
+
+export default IntensitySlider

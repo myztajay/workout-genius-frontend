@@ -1,17 +1,21 @@
-import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
-import AppBar from 'material-ui/AppBar';
+import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom'
+import AppBar from 'material-ui/AppBar'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
-import { ToolbarGroup } from 'material-ui/Toolbar';
+import Drawer from 'material-ui/Drawer'
+import MenuItem from 'material-ui/MenuItem'
+import { ToolbarGroup } from 'material-ui/Toolbar'
 import './nav.css'
 import FlatButton from 'material-ui/FlatButton'
 
 const MyNavLinks = () => (
   <ToolbarGroup>
-    <FlatButton label="Create" labelStyle={{color: 'white', backgroundColor:'#2979FF', padding: '10px'}} containerElement={<NavLink to="/workouts/new" />}/>
-  </ToolbarGroup> 
+    <FlatButton 
+      label="Create"
+      labelStyle={{color: 'white', backgroundColor:'#2979FF', padding: '10px'}} 
+      containerElement={<NavLink to="/workouts/new" />}
+    />
+  </ToolbarGroup>
 );
 
 class Nav extends Component{
@@ -19,7 +23,7 @@ class Nav extends Component{
   super(props);
   this.state = {open: false};
   }
-  
+
   handleToggle = () => this.setState({open: !this.state.open})
   handleClose = () => this.setState({open: false});
 
@@ -33,7 +37,7 @@ class Nav extends Component{
         onLeftIconButtonClick={this.handleToggle}
         >
         </AppBar>
-        <Drawer 
+        <Drawer
           docked={false}
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}
@@ -41,7 +45,7 @@ class Nav extends Component{
         >
           <NavLink to="/"><MenuItem onClick={this.handleClose}>Home</MenuItem></NavLink>
           <NavLink to="/workouts"><MenuItem onClick={this.handleClose}>Workouts</MenuItem></NavLink>
-          <NavLink to="/myworkouts"><MenuItem onClick={this.handleClose}>My Workouts</MenuItem></NavLink>
+          <NavLink to={`/profile/${this.props.user._id}`}><MenuItem onClick={this.handleClose}>Profile</MenuItem></NavLink>
           <MenuItem onClick={this.props.handleLogout}>Logout</MenuItem>
         </Drawer>
       </MuiThemeProvider>
@@ -50,4 +54,3 @@ class Nav extends Component{
 }
 
 export default Nav
-

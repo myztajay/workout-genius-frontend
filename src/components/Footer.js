@@ -9,7 +9,14 @@ const Footer = () => (
   <MuiThemeProvider>
     <div className="footer">
       <div className="message">
-    Create you own workout with us  <NavLink to="/workouts/new"><RaisedButton label="Secondary" secondary label="create" /> </NavLink>
+    Create you own workout with us  
+    <NavLink to="/workouts/new">
+      <RaisedButton 
+        label="Secondary"
+        secondary
+        label="create" 
+      /> 
+    </NavLink>
       </div>
       Check us out at <a href="https://github.com/myztajay/workout-genius-frontend"><FontAwesome name="github" /></a>
     </div>

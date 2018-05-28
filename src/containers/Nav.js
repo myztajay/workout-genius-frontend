@@ -32,7 +32,7 @@ class Nav extends Component{
       <MuiThemeProvider>
         <AppBar
         className='navbar'
-        title={<span >Workout genius</span>}
+        title={<span className='navbar-title'>Workout genius</span>}
         iconElementRight={<MyNavLinks />}
         onLeftIconButtonClick={this.handleToggle}
         >

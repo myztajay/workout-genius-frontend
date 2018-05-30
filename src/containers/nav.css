@@ -1,8 +1,22 @@
-.navbar{
-  background: linear-gradient(150deg,#2979FF 15%,#05d5ff 70%,#F4FF81 105%);
+.flex-nav{
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 30px;
 }
-
-.navbar .navbar-title{
-  font-size: 40px;
-  font-weight: bolder;
+.brand{
+  font-size: 2.1em!important;
+  line-height: 1.4!important;
+}
+.icon-size{
+  font-size: 52px!important;
+}
+.nav-button{
+  margin-top: 3px!important;
+  margin-right: 15px!important;
+}
+.flex{
+  display: flex;
+}
+.v-center{
+  align-items: center;
 }

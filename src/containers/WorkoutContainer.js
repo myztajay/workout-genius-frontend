@@ -26,7 +26,7 @@ class WorkoutContainer extends Component {
     }
   }
 
-  async componentWillMount() {
+  async unsafe_componentwillmount () {
     let workout
     try {
       workout = await axios.get(`/api/workouts/${this.state.id}`)

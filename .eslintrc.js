@@ -1,3 +1,7 @@
 module.exports = {
-    "extends": "airbnb"
+    "extends": "airbnb",
+    "rules": {
+        "jsx-a11y/href-no-hash": [0], 
+      }
 };
+

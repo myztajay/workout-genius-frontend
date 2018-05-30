@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^1.1.0",
+    "@material-ui/icons": "^1.1.0",
     "airbnb-browser-shims": "^2.1.0",
     "axios": "^0.17.1",
     "babel-preset-airbnb": "^2.4.0",
@@ -16,6 +17,7 @@
     "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.2.0",
     "react-fontawesome": "^1.6.1",
+    "react-media": "^1.8.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-svg-gauge": "^1.0.6",
@@ -27,7 +29,7 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "react-scripts": "1.0.17"
+    "react-scripts": "^1.1.4"
   },
   "proxy": {
     "/api/auth": {

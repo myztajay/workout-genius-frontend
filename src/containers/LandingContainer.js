@@ -1,8 +1,9 @@
+// eslint-disable-next-line 
 import React, { Component } from 'react'
 import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import './landing.css'
+import './landingcontainer.css'
 
 class LandingContainer extends Component {
   logInWithFacebook() {
@@ -14,14 +15,14 @@ class LandingContainer extends Component {
   render() {
     return (
       <header>
-        <div id="stripes" />
+        
         <section className="intro">
           <div className="intro-card">
             <MuiThemeProvider>
               <Card>
                 <CardTitle title="Workout Genius" subtitle="Workout Genius" />
                 <CardText>
-          Find hundreds of workouts created by people like you.
+                  Find hundreds of workouts created by people like you.
                 </CardText>
                 <CardActions>
                   <FlatButton label="Facebook Login" hoverColor="#1f4da5" labelStyle={{ color: 'white' }} backgroundColor="#365899"color="white" onClick={this.signUpWithFacebook} />

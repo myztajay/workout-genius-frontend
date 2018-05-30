@@ -1,3 +1,4 @@
+// eslint-disable-next-line 
 import React from 'react'
 import { Card, CardTitle } from 'material-ui/Card'
 import propTypes from 'prop-types'
@@ -12,11 +13,6 @@ export const HomeContainer = ({ user }) => {
 
   return (
     <MuiThemeProvider>
-      <div className="banner2">
-        <div className="inner">
-          <h1 className="banner-text"> Lets Get Started!</h1>
-        </div>
-      </div>
       <div className="main-container2">
         <Link to="/workouts">
           <Card className="card-actions">

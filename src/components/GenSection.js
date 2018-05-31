@@ -4,8 +4,8 @@ const GenSection = () =>{
 return(
     <div>
         <h1>yoyo</h1>
-        </div>
+    </div>
 )
 }
 
-export GenSection
+export { GenSection }

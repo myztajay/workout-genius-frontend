@@ -20,6 +20,7 @@
     "react-media": "^1.8.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
+    "react-slick": "^0.23.1",
     "react-svg-gauge": "^1.0.6",
     "semantic-ui-css": "^2.2.14",
     "semantic-ui-react": "^0.77.2"

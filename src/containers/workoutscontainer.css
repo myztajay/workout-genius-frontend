@@ -101,7 +101,7 @@ div.main-container2 a{
   font-size: 20px;  
 }
 
-@media screen and (min-width: 992px){
+@media screen and (min-width: 768px){
   .card-workout{
     max-width: 300px;
     min-width: 300px;
@@ -111,6 +111,21 @@ div.main-container2 a{
     flex-direction: column;
   }
   
+  .card-section{
+    display: flex;
+    justify-content: center
+  }
+  .card-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 90%;
+  }
+
+  .column-section{
+    display: flex;
+    flex-direction: column;
+  }
   .material-iconz{
     font-size: 20px;  
   }

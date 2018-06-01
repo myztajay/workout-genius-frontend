@@ -16,10 +16,7 @@
   flex: 1 1 75%
 }
 
-.card-container{
-  display: flex;
-  justify-content: space-around;
-}
+
 .rounded{
   border-radius: 100%;
 }

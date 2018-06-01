@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Card, CardTitle, CardMedia } from 'material-ui/Card'
+import { WorkoutCard } from '../components/WorkoutCard'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { Link } from 'react-router-dom'
 import Divider from 'material-ui/Divider'
@@ -87,7 +88,7 @@ class WorkoutsContainer extends Component {
       )
     }
     return workoutsArr.map(workout => (
-      <Card className="card-workout">
+      <WorkoutCard className="card-workout" {...workout} >
         <CardTitle titleColor="#2979FF" />
         <Link key={workout._id} to={`/workout/${workout._id}`} >
           <CardMedia overlay={<CardTitle title={workout.name} subtitle={workout.description} />} >
@@ -107,7 +108,7 @@ class WorkoutsContainer extends Component {
         </div>
         <Divider />
         <div className="user-info"><img className="profile-img" alt="A workout" src={`${workout.creator[0].facebook_photo}`} />{workout.creator[0].display_name}</div>
-      </Card>
+      </WorkoutCard>
     ))
   }
 
@@ -129,9 +130,12 @@ class WorkoutsContainer extends Component {
           <WorkoutFilter name="Cardio" abrev="CO" type={5} active={this.state.filterArr[0]} onFilterToggle={this.onFilterToggle} />
         </div>
         <div className="filter-results">{this.state.workoutCount} {this.state.workoutCount === 1 ? 'Workout found' : 'workouts found'}</div>
-        <div className="main-container">
+          <div className="card-section">
+          <div className="card-container">
           {this.renderWorkouts()}
-        </div>
+          </div>
+          </div>
+      
       </MuiThemeProvider>
     )
   }

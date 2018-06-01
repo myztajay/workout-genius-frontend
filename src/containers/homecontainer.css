@@ -20,13 +20,6 @@ div.main-container2 a{
   border-radius: 25px !important;
 }
 
-.material-icons{
-  font-size: 200px;
-  background: linear-gradient(150deg,#2979FF 15%,#05d5ff 70%,#F4FF81 105%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
 .icon-container{
   display: flex;
   justify-content: center;  

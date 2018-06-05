@@ -3,6 +3,10 @@ import { Redirect } from 'react-router'
 import { Card, CardTitle } from 'material-ui/Card'
 import { Link } from 'react-router-dom'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import SectionContainer from './SectionContainer'
+import CardContainer from '../components/CardContainer'
+import ExerciseCard from '../components/ExerciseCard'
+
 import axios from 'axios'
 import RaisedButton from 'material-ui/RaisedButton'
 import DeleteDialog from '../components/DeleteDialog'
@@ -20,28 +24,29 @@ class WorkoutContainer extends Component {
       intensity: '',
       exercises: [],
       creator: [],
+      liked:'',
       user: props.user,
       deleteDialogOpen: false,
       redirect: false,
     }
   }
 
-  async unsafe_componentwillmount () {
+  async componentDidMount () {
     let workout
     try {
       workout = await axios.get(`/api/workouts/${this.state.id}`)
     } catch (err) {
       console.log(err)
     }
-    const {
-      name, description, exercises, intensity, creator,
-    } = workout.data
+ 
+    const { name, description, exercises, intensity, creator, liked } = workout.data
     this.setState({
       name,
       description,
       exercises,
       intensity,
       creator,
+      liked
     })
   }
 
@@ -62,23 +67,11 @@ class WorkoutContainer extends Component {
   }
 
   renderExercisesInWorkout = () => {
-    return this.state.exercises.map(exercise =>
-      // THE JSX return should be refactored into own component when finalized
-      (
-        <Card className="card-margin exercise-card">
-          <div className="column-container flex-flexible">
-            <CardTitle title={exercise.name} titleColor="#2979FF" />
-          </div>
-          <div className="flex-row flex-flexible flex-end">
-            <div className="circle flex-center text-white text-center">reps<br />
-              {exercise.reps}
-            </div>
-            <div className="circle flex-center text-white text-center">sets<br />
-              {exercise.sets}
-            </div>
-          </div>
-        </Card>
-      ))
+    return this.state.exercises.map(exercise =>{
+      return(
+        <ExerciseCard {...exercise} />  
+      )
+    })
   }
 
   renderAdminButtons = () => {
@@ -105,7 +98,7 @@ class WorkoutContainer extends Component {
         </p>
       )
     }
-    return ''
+   
   }
 
   render() {
@@ -114,22 +107,27 @@ class WorkoutContainer extends Component {
       return <Redirect to="/workouts" />
     }
     return (
-      <MuiThemeProvider>
-        <div className="main-container-workout">
-          <Card className="column-container main-width ">
-            <div className="flex-row flex-center main-blue">
-              <div className="column-container title-desc tb-padding">
-                <CardTitle className="no-padding" title={this.state.name} subtitle={`${this.state.description}`} />
-                  Likes - comments
-                {this.renderAdminButtons()}
-              </div>
-            </div>
-            <div>
-              {this.renderExercisesInWorkout()}
-            </div>
-          </Card>
-        </div>
-      </MuiThemeProvider>
+      // <MuiThemeProvider>
+      //   <div className="main-container-workout">
+      //     <Card className="column-container main-width ">
+      //       <div className="flex-row flex-center main-blue">
+      //         <div className="column-container title-desc tb-padding">
+      //           <CardTitle className="no-padding" title={this.state.name} subtitle={`${this.state.description}`} />
+      //             Like - {this.state.liked.length } - comments
+      //           {this.renderAdminButtons()}
+      //         </div>
+      //       </div>
+      //       <div>
+      //         
+      //       </div>
+      //     </Card>
+      //   </div>
+      // </MuiThemeProvider>
+      <SectionContainer>
+        <CardContainer>
+          {this.renderExercisesInWorkout()}
+        </CardContainer>
+      </SectionContainer>
     )
   }
 }

@@ -31,13 +31,13 @@ class App extends Component {
     } catch (err) {
       console.log(err)
     }
-    if (authUser.data !== '') {
+    if (authUser.data != false) {
       this.setState({ user: authUser.data, loggedIn: true })
     }
   }
 
   async handleLogout() {
-    try { await axios.get('/api/auth/logout') } catch (err) { console.log(err) }
+    try { axios.get('/api/auth/logout') } catch (err) { console.log(err) }
     this.setState({
       loggedIn: false,
       user: {},

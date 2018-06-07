@@ -18,6 +18,7 @@ class Nav extends Component{
   };
   handleToggle = () => this.setState({open: !this.state.open})
   handleClose = () => this.setState({open: false});
+  
 
   render(){
     return(
@@ -58,7 +59,7 @@ class Nav extends Component{
             <NavLink to="/"><MenuItem onClick={this.handleClose}>Home</MenuItem></NavLink>
             <NavLink to="/workouts"><MenuItem onClick={this.handleClose}>Workouts</MenuItem></NavLink>
             {this.props.loggedIn ?<NavLink to={`/profile/${this.props.user._id}`}><MenuItem onClick={this.handleClose}>Profile</MenuItem></NavLink> : ''}
-            {this.props.loggedIn ?<MenuItem onClick={this.props.handleLogout}>Logout</MenuItem> :''}
+            {this.props.loggedIn ?<NavLink to="/"><MenuItem onClick={this.props.handleLogout}>Logout</MenuItem></NavLink> :''}
           </Drawer>
         </MuiThemeProvider>
       </div>

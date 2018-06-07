@@ -92,7 +92,7 @@ class LandingContainer extends Component {
           </Typography >    
        
           <Slider {...settings}>
-            {this.renderLatest()}
+            {/* {this.renderLatest()} */}
           </Slider>
        
           

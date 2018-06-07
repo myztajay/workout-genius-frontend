@@ -1,8 +1,6 @@
 import React from 'react';
 import Media from "react-media";
 
-
-
 const SectionContainer = ({children}) => {
     const styles = {
         main:{

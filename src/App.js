@@ -13,6 +13,7 @@ import Footer from './components/Footer'
 import '../node_modules/grommet-css'
 import 'airbnb-browser-shims'
 import './App.css'
+import AuthContainer from './containers/AuthContainer';
 
 class App extends Component {
   constructor(props) {
@@ -58,6 +59,7 @@ class App extends Component {
             <div>
               <Nav handleLogout={this.handleLogout} user={this.state.user} logInWithFacebook={this.logInWithFacebook} signUpWithFacebook={this.signUpWithFacebook} loggedIn={this.state.loggedIn}/>
               <Route exact path="/" render={() => !this.state.loggedIn ? <LandingContainer /> : <HomeContainer user={this.state.user} /> } />
+              <Route exact path="/Login" render={() => !this.state.loggedIn ? <AuthContainer logInWithFacebook={this.logInWithFacebook}/> : <HomeContainer user={this.state.user} /> } />
               <Route exact path="/home" render={() => <HomeContainer user={this.state.user} />} />
               <Route exact path="/workouts" render={() => <WorkoutsContainer user={this.state.user} />} />
               <Route exact path="/workouts/new" render={() => <NewWorkoutContainer user={this.state.user} />} />

@@ -19,13 +19,12 @@ class Nav extends Component{
   handleToggle = () => this.setState({open: !this.state.open})
   handleClose = () => this.setState({open: false});
   
-
   render(){
     return(
       <div>
         <div className='flex-nav'>
           <div>
-          <Typography className='brand' variant='display2' color="inherit" >
+          <Typography className='brand' style={{color:'#A5FF00'}} variant='display2' color="inherit" >
             Workout Genius
           </Typography >  
           </div>

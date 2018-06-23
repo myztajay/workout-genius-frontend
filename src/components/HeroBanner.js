@@ -1,21 +1,24 @@
 import React from 'react';
+import Typography from '@material-ui/core/Typography'
 
-const HeroBanner = ({title, subTitle='', backgroundImage, color, customHeight='80vh'}) => {
+const HeroBanner = ({title='', justifyContent='center', subTitle='', backgroundImage, color, customHeight='80vh'}) => {
     const styles = {
         banner:{
             display: 'flex',
-            justifyContent: 'center',
+            justifyContent,
             alignItems: 'center',
+            color,
             minHeight: customHeight,
-            backgroundColor: '#c93030'
+            backgroundColor: '',
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: 'cover',
         }
     }
 
     return(
         <div style={{...styles.banner,}}>
             <div>
-                <h1>{title}</h1>
-                <h4>{subTitle}</h4>
+            <Typography style={{textAlign: 'center'}} variant='display2' color="inherit" >  {title}</Typography>
             </div>          
         </div>
     )

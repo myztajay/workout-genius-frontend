@@ -6,6 +6,7 @@ import { IconButton } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import IntensityRating from '../components/IntensityRating';
+import PlayModal from '../components/PlayModal';
 
 const styles = {
     card:{
@@ -52,14 +53,15 @@ const styles = {
     }
 }
 
-const WorkoutCard = ({name, subtitle, description, intensity, _id, creator}) => {
+const WorkoutCard = ({name, subtitle, description, intensity, _id, creator, exercises}) => {
     // NEED TO WRITE MY OWN FUNCTION OR LIBRARY TO ASESS BROWSER WIDTH SO THAT I CAN JUST
     //DYNAMIC CSS <Media> has to render children components so I have duplicate do with just one
-    // css prop different
+    // css prop different 
+
     return(
         <Media query="(min-width: 768px)">
             {matches=>
-                matches ? (
+                matches ? ( 
                 <div style={{...styles.desktopCard, ...styles.shared}}>
                     <div style={styles.cardSide}>
                     <IntensityRating intensity={intensity} />
@@ -70,11 +72,14 @@ const WorkoutCard = ({name, subtitle, description, intensity, _id, creator}) => 
                         <Typography className='brand' variant='display2' color="inherit" >
                             {name}
                         </Typography >
-                        {description}
+                            {description}
                     </Link>
                     </div>
                     <div style={styles.cardSide}>
-                    <MyIcon icon="play_circle_filled" fontSize="40" />
+                        <PlayModal  
+                            name={name}
+                            exercises={exercises}
+                        /> 
                     </div>
                 </div>       
                 ) : (
@@ -92,7 +97,10 @@ const WorkoutCard = ({name, subtitle, description, intensity, _id, creator}) => 
                     </Link>
                     </div>
                     <div style={styles.cardSide}>
-                    <MyIcon icon="play_circle_filled" fontSize="40" />
+                        <PlayModal 
+                            name={name}
+                            exercises={exercises}
+                        /> 
                     </div>
                 </div>  
             )}

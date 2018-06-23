@@ -9,7 +9,7 @@ const SectionContainer = ({children, center=false, height='60vh'}) => {
        styles.main = { display:'flex',justifyContent: 'center'} 
     }
     if(height){
-        styles.main.height = height
+        styles.main.minHeight = height
     }
     return (
         <Media query="(min-width: 768px)">

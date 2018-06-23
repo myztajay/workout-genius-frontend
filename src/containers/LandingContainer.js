@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Card, CardActions, CardTitle, CardText, CardMedia  } from 'material-ui/Card'
+import { SectionContainer } from './SectionContainer'
+import HeroBanner from '../components/HeroBanner'
 import FlatButton from 'material-ui/FlatButton'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Typography from '@material-ui/core/Typography'
@@ -8,15 +10,12 @@ import { Link } from 'react-router-dom'
 import Divider from 'material-ui/Divider'
 import IntensityRating from '../components/IntensityRating'
 import Slider from 'react-slick'
-
 import './landingcontainer.css'
-
 
 class LandingContainer extends Component {
   state = {
     workouts: [],
   }
-
 
   logInWithFacebook() {
     window.location.href = '/api/auth/facebook'
@@ -66,16 +65,24 @@ class LandingContainer extends Component {
   }
 
   render() {
-    var settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 3,
-      slidesToScroll: 1
-    };
+    // var settings = {
+    //   dots: true,
+    //   infinite: true,
+    //   speed: 500,
+    //   slidesToShow: 3,
+    //   slidesToScroll: 1
+    // };
     
     return (
       <header>
+        <HeroBanner 
+          title="Stay in Shape" 
+          color="#f3f3f3"
+          subTitle="With Hundreds of Workouts" 
+          customHeight="80vh"
+          justifyContent='flexStart'
+          backgroundImage="/m.jpg"
+          />,
         <section className="intro">
           <div className="main-section hero-height">
             <Typography className='brand hero-pad' variant='display2' color="inherit" >
@@ -91,9 +98,9 @@ class LandingContainer extends Component {
               lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta ac nibh vitae congue. Phasellus in aliquam urna, sed porta ipsum. Quisque sagittis facilisis ante, nec ullamcorper ante accumsan id. 
           </Typography >    
        
-          <Slider {...settings}>
+          {/* <Slider {...settings}> */}
             {/* {this.renderLatest()} */}
-          </Slider>
+          {/* </Slider> */}
        
           
         </section>

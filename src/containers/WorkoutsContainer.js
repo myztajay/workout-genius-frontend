@@ -10,6 +10,7 @@ import WorkoutFilter from '../components/WorkoutFilter'
 import SectionContainer from './SectionContainer'
 import HeroBanner from '../components/HeroBanner'
 import CardContainer from '../components/CardContainer'
+import PlayModal from '../components/PlayModal'
 
 
 class WorkoutsContainer extends Component {
@@ -49,6 +50,8 @@ class WorkoutsContainer extends Component {
     }
   }
 
+
+
   OnLikeClick = (workout) => {
     const likeCheck = workout.liked.some((userThatLiked) => {
       if (String(this.state.user._id) === String(userThatLiked._id)) return true
@@ -64,14 +67,19 @@ class WorkoutsContainer extends Component {
 
   renderWorkouts = () => {
     return this.state.workouts.map(workout => (
-      <WorkoutCard className="card-workout" {...workout} />   
+      [
+        <WorkoutCard 
+          className="card-workout" 
+          {...workout}
+        />
+      ]  
     ))
   }
 
   render() {
     return (
       [
-      <HeroBanner title="Stay in Shape" subTitle="With Hundreds of Workouts" customHeight="60vh"/>,
+      <HeroBanner title="Stay in Shape" backgroundImage='./k.jpg'subTitle="With Hundreds of Workouts" customHeight="60vh"/>,
       <SectionContainer>
         <CardContainer>
           {this.renderWorkouts()}

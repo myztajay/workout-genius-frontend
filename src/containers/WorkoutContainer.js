@@ -77,6 +77,7 @@ class WorkoutContainer extends Component {
   renderAdminButtons = () => {
     if (this.state.user._id === this.state.creator[0]) {
       return (
+        <MuiThemeProvider>
         <p>
           <Link to={`edit/${this.state.id}`}>
             <RaisedButton
@@ -96,6 +97,7 @@ class WorkoutContainer extends Component {
             handleDialogClose={this.handleDialogClose}
           />
         </p>
+        </MuiThemeProvider>
       )
     }
    
@@ -123,11 +125,14 @@ class WorkoutContainer extends Component {
       //     </Card>
       //   </div>
       // </MuiThemeProvider>
+
+      [
       <SectionContainer>
         <CardContainer>
           {this.renderExercisesInWorkout()}
         </CardContainer>
       </SectionContainer>
+      ]
     )
   }
 }

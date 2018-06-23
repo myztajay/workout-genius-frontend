@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Card, CardActions, CardTitle, CardText, CardMedia  } from 'material-ui/Card'
-import { SectionContainer } from './SectionContainer'
-import HeroBanner from '../components/HeroBanner'
+import SectionContainer from './SectionContainer'
 import FlatButton from 'material-ui/FlatButton'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Typography from '@material-ui/core/Typography'
@@ -10,6 +9,8 @@ import { Link } from 'react-router-dom'
 import Divider from 'material-ui/Divider'
 import IntensityRating from '../components/IntensityRating'
 import Slider from 'react-slick'
+import Blurb from '../components/Blurb'
+import Button from '@material-ui/core/Button';
 import './landingcontainer.css'
 
 class LandingContainer extends Component {
@@ -75,14 +76,21 @@ class LandingContainer extends Component {
     
     return (
       <header>
-        <HeroBanner 
-          title="Stay in Shape" 
+        <SectionContainer 
           color="#f3f3f3"
-          subTitle="With Hundreds of Workouts" 
-          customHeight="80vh"
+          customHeight="100vh"
           justifyContent='flexStart'
           backgroundImage="/m.jpg"
-          />,
+
+          >
+          <Blurb grow='0' shrink='0' basis='50%' title='Hundreds of Workouts'
+            sub='lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta ac nibh vitae congue. Phasellus in aliquam urna, sed porta ipsum. Quisque sagittis facilisis ante, nec ullamcorper ante accumsan id. '
+          >
+            <Button className='nav-button' style={{backgroundImage: `linear-gradient(150deg,#7CFF00 15%,#6FE400)`, color: '#222222'}} variant="raised" color="primary" size="medium">
+              Start Today
+            </Button>
+          </Blurb>
+        </SectionContainer>
         <section className="intro">
           <div className="main-section hero-height">
             <Typography className='brand hero-pad' variant='display2' color="inherit" >

@@ -7,8 +7,8 @@ import Divider from 'material-ui/Divider'
 import axios from 'axios'
 import './workoutscontainer.css'
 import WorkoutFilter from '../components/WorkoutFilter'
+
 import SectionContainer from './SectionContainer'
-import HeroBanner from '../components/HeroBanner'
 import CardContainer from '../components/CardContainer'
 import PlayModal from '../components/PlayModal'
 
@@ -79,7 +79,7 @@ class WorkoutsContainer extends Component {
   render() {
     return (
       [
-      <HeroBanner title="Stay in Shape" backgroundImage='./k.jpg'subTitle="With Hundreds of Workouts" customHeight="60vh"/>,
+      <SectionContainer title="Stay in Shape" backgroundImage='./k.jpg'subTitle="With Hundreds of Workouts" customHeight="60vh"/>,
       <SectionContainer>
         <CardContainer>
           {this.renderWorkouts()}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import axios from 'axios'
+import 'typeface-roboto'
 import Nav from './containers/Nav'
 import LandingContainer from './containers/LandingContainer'
 import HomeContainer from './containers/HomeContainer'

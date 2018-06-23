@@ -9,6 +9,7 @@ import Media from "react-media";
 import Typography from '@material-ui/core/Typography';
 import { IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+import Paper from '@material-ui/core/Paper';
 import './nav.css'
 
 class Nav extends Component{
@@ -21,6 +22,7 @@ class Nav extends Component{
   
   render(){
     return(
+      <Paper elevation={4}>
       <div>
         <div className='flex-nav'>
           <div>
@@ -43,7 +45,7 @@ class Nav extends Component{
               )
             }
             </Media>
-            <IconButton className="menu-button" onClick={this.handleToggle} >
+            <IconButton className="menu-button" style={{color: '#fff'}}onClick={this.handleToggle} >
               <MenuIcon className="icon-size" />
             </IconButton> 
           </div>  
@@ -62,6 +64,7 @@ class Nav extends Component{
           </Drawer>
         </MuiThemeProvider>
       </div>
+      </Paper>
     )
   }
 }

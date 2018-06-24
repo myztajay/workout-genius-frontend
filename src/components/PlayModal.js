@@ -19,7 +19,7 @@ import Slide from '@material-ui/core/Slide';
 import SwipeableViews from 'react-swipeable-views';
 import { bindKeyboard } from 'react-swipeable-views-utils';
 import Pagination from '../vendor/components/Pagination'
-import { MyIcon } from "../components/MyIcon";
+import MyIcon from "../components/MyIcon";
 import ExerciseCard from './ExerciseCard';
 
 const BindKeyboardSwipeableViews = bindKeyboard(SwipeableViews);
@@ -48,7 +48,6 @@ class PlayModal extends Component {
     });
   };
 
-
   _renderExerciseSlides = () => {
     return this.props.exercises.map((exercise)=>{
       return (
@@ -65,8 +64,11 @@ class PlayModal extends Component {
     let fullScreen
     width ==='xs' ? fullScreen = true : fullScreen = false
     return (
-      <div>
-        <Button onClick={this.onPlayOpen}> <MyIcon icon="play_circle_filled" fontSize="40" /></Button>
+      <div style={{display:'flex', justifyContent: 'space-evenly', width: '100%'}}>
+        <MyIcon onClick={this.onPlayOpen} icon="play_circle_filled" fontSize="40" bgColor="lawngreen" cursor='pointer'/>
+        <Typography onClick={this.onPlayOpen }style={{color:'white', fontSize:30, cursor: 'pointer' }} variant='display1' color="white"  >
+                        Start Workout
+        </Typography >
         <Dialog   
           open={this.state.playModalOpen}
           fullScreen={fullScreen}

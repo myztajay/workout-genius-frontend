@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { Card, CardTitle, CardMedia } from 'material-ui/Card'
-import { WorkoutCard } from '../components/WorkoutCard'
+import WorkoutCard from '../components/WorkoutCard'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { Link } from 'react-router-dom'
 import Divider from 'material-ui/Divider'
 import axios from 'axios'
 import './workoutscontainer.css'
 import WorkoutFilter from '../components/WorkoutFilter'
-
 import SectionContainer from './SectionContainer'
 import CardContainer from '../components/CardContainer'
 import PlayModal from '../components/PlayModal'
@@ -69,6 +68,7 @@ class WorkoutsContainer extends Component {
     return this.state.workouts.map(workout => (
       [
         <WorkoutCard 
+          paperElevation="8"
           className="card-workout" 
           {...workout}
         />

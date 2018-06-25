@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, CardTitle, CardMedia } from 'material-ui/Card'
+import { CardTitle, CardMedia } from 'material-ui/Card'
 import WorkoutCard from '../components/WorkoutCard'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { Link } from 'react-router-dom'
@@ -69,6 +69,7 @@ class WorkoutsContainer extends Component {
       [
         <WorkoutCard 
           paperElevation="8"
+          iconBg='red'
           className="card-workout" 
           {...workout}
         />

@@ -1,21 +1,11 @@
 import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItem from '@material-ui/core/ListItem';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
-import Slide from '@material-ui/core/Slide';
 import SwipeableViews from 'react-swipeable-views';
 import { bindKeyboard } from 'react-swipeable-views-utils';
 import Pagination from '../vendor/components/Pagination'
@@ -67,7 +57,7 @@ class PlayModal extends Component {
       <div style={{display:'flex', justifyContent: 'space-evenly', width: '100%'}}>
         <MyIcon onClick={this.onPlayOpen} icon="play_circle_filled" fontSize="40" bgColor="lawngreen" cursor='pointer'/>
         <Typography onClick={this.onPlayOpen }style={{color:'white', fontSize:30, cursor: 'pointer' }} variant='display1' color="white"  >
-                        Start Workout
+          Start Workout
         </Typography >
         <Dialog   
           open={this.state.playModalOpen}

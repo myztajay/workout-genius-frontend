@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { Card, CardActions, CardTitle, CardText, CardMedia  } from 'material-ui/Card'
+import Card from '../components/Card'
 import SectionContainer from './SectionContainer'
-import FlatButton from 'material-ui/FlatButton'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Typography from '@material-ui/core/Typography'
 import axios from 'axios'
@@ -10,9 +9,15 @@ import Divider from 'material-ui/Divider'
 import IntensityRating from '../components/IntensityRating'
 import Slider from 'react-slick'
 import Blurb from '../components/Blurb'
+import WorkoutCard from '../components/WorkoutCard'
 import Button from '@material-ui/core/Button';
 import './landingcontainer.css'
+import SwipeableViews from 'react-swipeable-views';
+import { bindKeyboard } from 'react-swipeable-views-utils';
+import Pagination from '../vendor/components/Pagination'
 
+
+const BindKeyboardSwipeableViews = bindKeyboard(SwipeableViews);
 class LandingContainer extends Component {
   state = {
     workouts: [],
@@ -38,41 +43,23 @@ class LandingContainer extends Component {
   renderLatest() {
     return this.state.workouts.map((workout)=>{
       return(
-        <MuiThemeProvider>
-        <Card className="card-workout">
-        <CardTitle titleColor="#2979FF" />
-        <Link key={workout._id} to={`/workout/${workout._id}`} >
-          <CardMedia overlay={<CardTitle title={workout.name} subtitle={workout.description} />} >
-            <img className="workout-img" src="workout.jpeg" alt="" />
-          </CardMedia>
-        </Link>
-        <div className="card-info">
-          <div className="info"><h4>Exercises</h4><p className="card-text">{workout.exercises.length}</p></div>
-          <div className="info"><h4>Intensity</h4><p className="card-text"><IntensityRating intensity={workout.intensity} /></p></div>
-          <div className="info"><h4>Likes</h4><p className="card-text">{workout.liked.length}</p></div>
-          <div className="info" >
-            <h4>Like</h4>
-            <p className="card-text">
-              <h4><i className="material-icons material-iconz">favorite_border</i></h4>
-            </p>
-          </div>
-        </div>
-        <Divider />
-        <div className="user-info"><img className="profile-img" alt="A workout" src={`${workout.creator[0].facebook_photo}`} />{workout.creator[0].display_name}</div>
-      </Card>
-      </MuiThemeProvider>
+        <WorkoutCard 
+          paperElevation="8"
+          className="card-workout" 
+          {...workout}
+        />
       )
     })
   }
 
   render() {
-    // var settings = {
-    //   dots: true,
-    //   infinite: true,
-    //   speed: 500,
-    //   slidesToShow: 3,
-    //   slidesToScroll: 1
-    // };
+    var settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 3,
+      slidesToScroll: 1
+    };
     
     return (
       <header>
@@ -81,67 +68,60 @@ class LandingContainer extends Component {
           customHeight="100vh"
           justifyContent='flexStart'
           backgroundImage="/m.jpg"
-
           >
           <Blurb grow='0' shrink='0' basis='50%' title='Hundreds of Workouts'
             sub='lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta ac nibh vitae congue. Phasellus in aliquam urna, sed porta ipsum. Quisque sagittis facilisis ante, nec ullamcorper ante accumsan id. '
           >
             <Button className='nav-button' style={{backgroundImage: `linear-gradient(150deg,#7CFF00 15%,#6FE400)`, color: '#222222'}} variant="raised" color="primary" size="medium">
-              Start Today
+              Start Working Out
             </Button>
           </Blurb>
         </SectionContainer>
-        <section className="intro">
-          <div className="main-section hero-height">
-            <Typography className='brand hero-pad' variant='display2' color="inherit" >
-              lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta ac nibh vitae congue. Phasellus in aliquam urna, sed porta ipsum. Quisque sagittis facilisis ante, nec ullamcorper ante accumsan id. 
-            </Typography >  
-          </div>
-        </section>
-        <section className="main-section">
-          <Typography className='brand self-center title-pad' variant='display2' color="inherit" >
-          Recently Added
-          </Typography >
-          <Typography className='brand self-center lr-pad' variant='display4' color="inherit" >
-              lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta ac nibh vitae congue. Phasellus in aliquam urna, sed porta ipsum. Quisque sagittis facilisis ante, nec ullamcorper ante accumsan id. 
-          </Typography >    
-       
-          {/* <Slider {...settings}> */}
-            {/* {this.renderLatest()} */}
-          {/* </Slider> */}
-       
-          
-        </section>
-        <section className="main-section">
-        <Typography className='brand self-center title-pad' variant='display2' color="inherit" >
-          Workouts for everyone!
-          </Typography >
+        <SectionContainer
+          color='white'
+          customHeight="75vh"
+          justifyContent='flex-start'
+        >
+          <BindKeyboardSwipeableViews enableMouseEvents index={this.state.exerciseIndex} >
+            {this.renderLatest()}
+          </BindKeyboardSwipeableViews>
+          <Blurb grow='0' shrink='1' basis='50%' title='Alway up to date'
+            sub='lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta ac nibh vitae congue. Phasellus in aliquam urna, sed porta ipsum. Quisque sagittis facilisis ante, nec ullamcorper ante accumsan id. '
+          />  
+        </SectionContainer>
+        <SectionContainer
+          color='white'
+          flexDirection='column'
+          customHeight="100vh"
+          justifyContent='flex-start'
+        >
+        <Blurb grow='0' shrink='1' basis='50%' title='Show us what you got!'
+            sub=''
+          />  
           <div className="landing-card-container">
-            <div className="landing-card"></div>
-            <div className="landing-card"></div>
-            <div className="landing-card"></div>
-            <div className="landing-card"></div>
-            <div className="landing-card"></div>
-            <div className="landing-card"></div>
+            <Card paperElevation="8" title="erwerwer" iconColor='red' bgColor='blue'/>
+            <Card paperElevation="8" title="Calisthetics" iconColor='blue'/>
+            <Card paperElevation="8" title="Bodybuilding" iconColor='yellow'/>
+            <Card paperElevation="8" title="Aerobic"iconColor='orange'/>
+            <Card paperElevation="8" title="Freestyle" iconColor='orange'/>
+            <Card paperElevation="8" title="Etc"iconColor='orange'/>
           </div>
-        </section>
-        <section className="main-section">
-          <Typography className='brand self-center title-pad' variant='display2' color="inherit" >
-                Get Involved!
-          </Typography >
+        </SectionContainer>
+
+         <SectionContainer
+          color='white'
+          flexDirection='column'
+          customHeight="100vh"
+          justifyContent='flex-start'
+        >
+            <Blurb grow='0' shrink='1' basis='50%' 
+            sub='Show us what you got!'
+          />  
           <div className="conversion-card-container">
-            <div className="conversion-card">
-              <Typography className='brand self-center title-pad' variant='display2' color="inherit" >
-                contribute!
-              </Typography >
-            </div>
-            <div className="conversion-card">
-              <Typography className='brand self-center title-pad' variant='display2' color="inherit" >
-                contribute!
-              </Typography >
-            </div>
+          <Card paperElevation="8" minHeight='400' title="We need you!" sub='Are you a beast? or Treadmill Tyrant? Well why not create your own work out? "Just do it" - Nike ' iconColor='orange'/>
+          <Card paperElevation="8" minHeight='400' title="Or checkout our fresh sets" sub='Hundreds of worksout by the people for the people'iconColor='orange'/>
           </div>
-        </section>
+          </SectionContainer>
       </header>
     )
   }

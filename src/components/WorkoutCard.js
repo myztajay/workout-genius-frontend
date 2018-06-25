@@ -12,7 +12,7 @@ import Paper from '@material-ui/core/Paper';
 
 const styles = {
     card:{
-        minHeight: 80,
+        minHeight: 80, 
         margin: 5,
         maxWidth: "100%"
     },
@@ -66,16 +66,16 @@ const styles = {
     }
 }
 
-const WorkoutCard = ({ paperElevation=0 ,width, name, subtitle, description, intensity, _id, creator, exercises}) => {
+const WorkoutCard = ({ iconBg, paperElevation=0 ,width, name, subtitle, description, intensity, _id, creator, exercises}) => {
     // NEED TO WRITE MY OWN FUNCTION OR LIBRARY TO ASESS BROWSER WIDTH SO THAT I CAN JUST
     //DYNAMIC CSS using withMobileDialog for the width prop that it brings.
 
     width ==='xs' ? styles.desktopCard.flex='1 1 90%': styles.desktopCard.flex='1 0 30%'
     return(
-            <Paper elevation={paperElevation} className="buttonHover" style={{...styles.desktopCard}}>
+            <Paper elevation={paperElevation} className="buttonHover" style={{...styles.desktopCard, width}}>
                  <Link key={_id} to={`/workout/${_id}`} >
                     <div style={{...styles.cardSide, cursor:'pointer'}}>
-                        <MyIcon icon="directions_run" bgColor="lawngreen" fontSize="70" /> 
+                        <MyIcon icon="directions_run" bgColor={iconBg} fontSize="70" /> 
                     </div>
                     <div style={{...styles.cardMain, cursor:'pointer'}}>             
                         <Typography style={{color:'white'}} variant='display2' color="white"  >
